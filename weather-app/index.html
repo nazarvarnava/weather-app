@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Weather App</title>
+	<!-- bootstrap -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css" integrity="sha384-Zug+QiDoJOrZ5t4lssLdxGhVrurbmBWopoEl+M6BdEfwnCJZtKxi1KgxUyJq13dy" crossorigin="anonymous">
+	<!-- fontawesome -->
+	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+	<!-- weather icons -->
+	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/weather-icons/2.0.9/css/weather-icons.min.css">
+	<!-- stylesheet -->
+	<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+	<div class="weather-forecast">
+		
+		<!-- weather section  -->
+		<div class="container" id="hiden">
+				
+			<div class="row">
+				<div class="col-8 mx-auto weather">
+					<!-- weather header section -->
+					<span id="date" class="lead"></span>
+					<div class="weather-header">
+						<h1 id="location" class="text-center display-4"></h1>
+						<div class="row">					
+							<div id="description" class="description col-6 text-center ">
+								<i id="icon-desc" class="wi wi-owm-200"></i>
+								<p class="desc"></p>			
+							</div>
+							<div id="temperature" class="col-6 text-center ">
+								<i id="icon-thermometer" class="wi wi-thermometer"></i>					
+							</div>	
+						</div>
+						<!-- weather body header -->
+						<div class="weather-body">					
+							<div class="row">
+								<div class="humidity col-4 text-center">
+									<i class="wi wi-raindrop"></i><span> Wilgotność</span>
+								</div>
+								<div class="wind col-4 text-center">
+									<i class="wi wi-strong-wind"></i><span> Wiatr</span>
+								</div>
+								<div class="visibility col-4 text-center">
+									<i class="fa fa-eye"></i><span> Widoczność</span>
+								</div>				
+							</div>
+							<!-- weather body data -->
+							<div class="row">
+								<div id="humidity" class="humidity-data col-4 text-center">
+									
+								</div>
+								<div id="wind" class="wind-data col-4 text-center">
+									
+								</div>
+								<div id="visibility" class="degree-data col-4 text-center">
+									
+								</div>
+							</div>
+						</div>						
+					</div>					
+				</div>
+			</div>
+		</div>
+		
+	</div>
+	<!--New html file -->
+	<div class="container__next" id="xhide">
+		<div id="weatherContainer" class="card-wrapper" >
+			<!--Sekcja dla kartky numer 1-->
+		</div>
+	</div>
+	<!-- javascript file -->
+<script src="weather.js">
+</script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
+<!--Skrypt dla nacisniecia klawisza "t" i znikniecja lub pojawienia sie kontajnerow-->
+<script>
+	$(document).keypress(function(e){
+    var key = e.which;
+    if (key == 116) {
+	$('div').toggle();	
+    }
+});
+</script>
+<!--Skrypt dla zmieniania kontajnerow na przemian-->
+<script>
+	function cycle(...blocks) {
+	let i = 0;
+  	const show = () =>
+  	$("#" + blocks[i++ % blocks.length] )
+    .fadeIn(400)
+    .delay(blocks[i++ % blocks.length])
+    .fadeOut(400, show);
+   	show();
+}
+	cycle("hiden", 4000, "xhide", 5000);
+</script>
+		
+</body>
+</html>

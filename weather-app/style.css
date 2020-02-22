@@ -1,0 +1,294 @@
+/* Styl dla prognozy na dzis */
+body {
+	background-color: #000000;
+	min-height: 100vh;
+	background-size: cover;
+	background-position: center;
+	margin: 0 auto;
+	color: white;
+}
+
+
+.weather-forecast {
+    position: absolute;
+    min-height: 100vh;
+    min-width: 100vw;
+    top: 0;
+    bottom: 0;
+    background-color: #000000;
+    z-index: -5;
+}
+.container{
+    padding-top: 50px;
+}
+.lead{
+    margin-left: 300px;
+}
+
+
+
+.weather {
+	border:1px solid #ffffff;
+	margin-top: 50px;
+	background-color: #000000;
+	border-radius: 5px;
+	color: white;
+}
+
+.weather-header {
+    height: 50%;
+    
+}
+
+#icon-desc {
+	font-size: 40px;
+    padding-top: 32px;
+    
+}
+
+.humidity, .wind, .visibility {
+	border-top: 1px solid white;
+	border-bottom: 1px solid white;
+    font-size: 16px;
+    background-color: #3B444C;
+    text-shadow: 0 5px 5px rgb(25,35,45);
+
+}
+
+#description {
+	font-size: 32px;
+}
+
+#temperature {
+    font-size: 64px;
+    
+}
+
+#icon-thermometer {
+    font-size: 48px;
+    margin-left: 15px;
+}
+
+#humidity, #wind, #visibility {
+	font-size: 32px;
+	padding-top: 16px;
+    padding-bottom: 16px;
+    
+  
+}
+
+
+/* Styl dla pogody na kolejne 5 dni */
+.container__next{
+	padding-top: 50px;
+    width: 100vw;
+    height: 100vh;
+	display:none;
+}
+.card-wrapper{
+	height: 200px;
+	margin-left: 0 auto;
+	justify-content: center;
+    position: relative;
+    overflow: visible;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    perspective: 1000px;
+    transform-style: preserve-3d;
+}
+.card,
+.icon,
+.cloud-group,
+.sun-group,
+.rain-group{
+    position: relative;
+}
+.box-highlight{
+    padding: 8px 4px;
+    background-color: #3B444C;
+    text-shadow: 0 5px 5px rgb(25,35,45);
+}
+.card{
+	padding-top: 20px;
+	/*border: 1px solid #ffffff;*/
+    width: 200px;
+    padding: 16px;
+    margin-bottom: 60px;
+    text-align: center;
+    background-color: #000000;
+    box-sizing: border-box;
+    transition: all 500ms ease-out;
+    transform: rotateY(180deg);
+    backface-visibility: hidden;
+}
+
+.card-header{
+    padding-bottom: 8px;
+    border-bottom: 1px solid rgb(200,200,200);
+    margin: 0;
+    text-transform: capitalize;
+}
+.card-temp{
+    margin: 5px 0 10px 0;
+    font-size: 4em;
+    color: white;
+}
+.card-info{
+    padding-top: 8px;
+    border-top: 1px solid rgb(200,200,200);
+    margin: 10px 0 0 0;
+    font-size: 1.25em;
+
+}
+.card-temp::after{
+    content: "\00B0";
+}
+.icon{
+    margin-top: 50px;
+    display:flex;
+    align-items: flex-end;
+    justify-content: center;
+}
+.cloud-group{
+    width: 120px;
+    height: 106px;
+}
+.icon-cloud{
+    position: absolute;
+    background-color: white;
+    display: block;
+}
+.shadow-cloud-clip{
+    box-shadow: 2px -6px 0 rgb(25,35,45);
+}
+.cloud-base{
+    top: 27px;
+    left: 0;
+    width: 100%;
+    height: 45px;
+    border-radius: 40px;
+    z-index: 1;
+}
+.cloud-circle{
+    top: 0;
+    left: 15px;
+    width: 60px;
+    height: 60px;
+    border-radius: 60px;
+    z-index: 2;
+}
+.cloud-circle::after{
+    content: "";
+    position: absolute;
+    top: 8px;
+    left: 46px;
+    width: 40px;
+    height: 40px;
+    border-radius: 40px;
+    background-color: inherit;
+    box-shadow: 1px -6px 0 rgb(25,35,45);
+
+}
+.sun{
+    top: -12px;
+    left: 53px;
+    width: 60px;
+    height: 60px;
+    border-radius: 60px;
+}
+.sunshine,
+.sunshine::before,
+.sunshine::after{
+    position: absolute;
+    width: 18px;
+    height: 8px;
+    border-radius: 8px;
+}
+.sunshine{
+    top: 17px;
+    right: -17px;
+}
+.sunshine::before,
+.sunshine::after,
+.rain::before,
+.rain::after{
+    content: "";
+    background-color: inherit;
+}
+.sunshine::before{
+    top: -48px;
+    right: 45px;
+    transform: rotate(-90deg);
+}
+.sunshine::after{
+    top: -33px;
+    right: 11px;
+    transform: rotate(-45deg);
+}
+.rain{
+    left: 0;
+    bottom: -86px;
+    transform: rotate(-75deg);
+}
+.rain,
+.rain::before,
+.rain::after{
+    position: absolute;
+    width: 40px;
+    height: 8px;
+    border-radius: 8px;
+    box-shadow: 2px 0 0 4px rgb(25,35,45);
+    z-index: 2;
+}
+.rain::before{
+    left: 9px;
+    bottom: -35px
+}
+.rain::after{
+    right: -18px;
+    bottom: -69px
+}
+
+/*Animations*/
+.animate-flip{
+    animation-name: flip;
+    animation-duration: 1s;
+    animation-timing-function: ease-in;
+    animation-iteration-count: 1;
+	animation-fill-mode: forwards;
+}
+.animate-flip-card-1{
+    animation-delay: 1000ms;
+}
+.animate-flip-card-2{
+    animation-delay: 1166ms;
+}
+.animate-flip-card-3{
+    animation-delay: 1332ms;
+}
+.animate-flip-card-4{
+    animation-delay: 1498ms;
+}
+.animate-flip-card-5{
+    animation-delay: 1664ms;
+}
+.animate-flip-card-6{
+    animation-delay: 1830ms;
+}
+
+
+@keyframes flip{
+    0%{
+        transform: rotateY(180deg);
+        filter: blur(10px);
+    }
+    100%{
+        transform: rotateY(0deg);
+        filter: blur(0);
+    }
+}
+
+
+
